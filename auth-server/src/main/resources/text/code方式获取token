@@ -1,0 +1,21 @@
+第一步
+url:
+localhost:8080/oauth/authorize?client_id=clientId&response_type=code&redirect_uri=https://www.baidu.com
+method:GET
+结果：
+http://www.baidu.com?code=z3aNOf
+
+第二步
+
+url:
+http://localhost:8080/oauth/token?grant_type=authorization_code&code=3VotJO&client_id=clientId&client_secret=sercet&redirect_uri=https://www.baidu.com
+method:POST
+head:clientId   sercet
+结果：
+{
+    "access_token": "6b82f6e0-b705-4136-ba6b-b2e5b72d66e3",
+    "token_type": "bearer",
+    "expires_in": 43199,
+    "scope": "read"
+}
+
