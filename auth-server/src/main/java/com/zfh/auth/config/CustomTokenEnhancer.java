@@ -22,7 +22,7 @@ public class CustomTokenEnhancer implements TokenEnhancer {
             //token.setValue(getNewToken());  //修改token的vakue值
 
             Map<String, Object> additionalInformation = new HashMap<String, Object>();
-            additionalInformation.put("zfh", "1234");
+            additionalInformation.put("zfh12", "1234");
             token.setAdditionalInformation(additionalInformation);
             System.out.println(token.getValue());
 
