@@ -16,7 +16,7 @@ security:
       jwt:
         key-value:  zfh
 
-
+login.url: http://www.zfh.com/login
 
 #auth
 #server.session.cookie.name : OAUTH2SESSION
