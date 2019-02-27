@@ -1,9 +1,11 @@
 package com.zfh.auth.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * spring security config
@@ -15,6 +17,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
+   @Autowired
+    AuthenticationSuccessHandler authenticationSuccessHandler;
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
@@ -24,6 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //defaultSuccessUrl :成功登录过程后，用户将被重定向到页面 - 默认情况下，该页面是Web应用程序的根目录。
         http.authorizeRequests().antMatchers("/**").access("hasRole('USER')")
         .and().formLogin()
+                // 登陆成功之后执行的处理器
+                .successHandler(authenticationSuccessHandler)
 
 
       //  .successHandler(myAuthenticationSuccessHandler())//登录成功之后的handler（自定义handler）
@@ -43,6 +49,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      //   .rememberMe().userDetailsService(new JdbcUserDetailService())
 
         ;
+        /* 增加自定义过滤器   */
+       //  http.addFilter(new CustomUsernamePasswordAuthenticationFilter());
     }
 
    /* @Bean
