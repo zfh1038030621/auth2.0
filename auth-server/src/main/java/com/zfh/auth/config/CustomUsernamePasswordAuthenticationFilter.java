@@ -18,7 +18,9 @@ import java.util.HashMap;
  *
  *  自定义的需求：
  *  如果现在在登录页面除了username和password之类还有其它业务属性当成入参，并且要放到token里面
- *  我们这里以"mdid"为例子
+ *  我们这里以"mdid"为例子，这样最后就会在最终获取的Authentication对象中带着这个mdid
+ *
+ *  如果最后还需要往token加mdid，就直接在我们之前的CustomTokenEnhancer类中从Authentication中获取mdid放进去就可以了
  */
 public class CustomUsernamePasswordAuthenticationFilter  extends UsernamePasswordAuthenticationFilter {
     private boolean postOnly = true;
