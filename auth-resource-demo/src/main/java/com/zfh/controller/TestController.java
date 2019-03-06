@@ -26,12 +26,6 @@ public class TestController {
         System.out.println("test1方法执行了");
     }
 
-    @RequestMapping(value = "index")
-    public String login() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("");
-        return "index";
-        //System.out.println("到本系统的登录页面了");
-    }
+
 }
 
