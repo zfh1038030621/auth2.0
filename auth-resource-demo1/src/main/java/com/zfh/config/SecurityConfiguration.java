@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
  * @author zfh
  */
 @Configuration
+//@EnableWebSecurity
 @EnableOAuth2Sso
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -31,15 +32,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //loginPage("登录页面的url")  自定义登录页url,默认为/login
         // login-processing-url 登录请求拦截的url,也就是form表单提交时指定的action
         //defaultSuccessUrl :成功登录过程后，用户将被重定向到页面 - 默认情况下，该页面是Web应用程序的根目录。
-        http.authorizeRequests().antMatchers("/test").permitAll().anyRequest().authenticated()
-              //  .and().formLogin()
-                // 自定义登陆页面的地址，默认login
-            //    .loginPage(loginUrl)
-       // .and().formLogin()
+        http.authorizeRequests().antMatchers("test").permitAll()
+                .anyRequest().authenticated()
+
+      //  .and().formLogin()
                 // 登陆成功之后执行的处理器
               //  .successHandler(authenticationSuccessHandler)
                 // 自定义登陆页面的地址，默认login
-           //     .loginPage(loginUrl)
+               // .loginPage(loginUrl)
 
       //  .successHandler(myAuthenticationSuccessHandler())//登录成功之后的handler（自定义handler）
 

@@ -2,22 +2,24 @@ spring:
   application:
     name: auth-resource-demo
 server:
-  port: 8000
+  port: 8001
   session:
-      cookie:
-         name: OAUTH_SESSIONID_DEMO
+    cookie:
+       name: OAUTH_SESSIONID_DEMO1
+
 security:
   oauth2:
     client:
       client-id: clientId1
       client-secret: secret1
-      access-token-uri: http://localhost/oauth/token
-      user-authorization-uri: http://localhost/oauth/authorize
+      access-token-uri: http://localhost:80/oauth/token
+      user-authorization-uri: http://localhost:80/oauth/authorize
       #当使用jwt 对称加密的形式的时候加下面的配置
     resource:
       jwt:
         key-value:  zfh
-      user-info-uri: http://localhost/user/me
+        key-uri: http://localhost:80/oauth/token_key   #解析jwt令牌所需要密钥的地址
+      user-info-uri: http://localhost:80/user/me
 
 
 login.url: http://www.zfh.com/login

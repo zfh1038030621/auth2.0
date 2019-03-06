@@ -8,10 +8,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
 @Configuration
-@EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
-    private static final String RESOURCE_ID = "my_rest_api";
+    private static final String RESOURCE_ID = "my_rest_api_1";
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
@@ -20,7 +19,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/*").authenticated();
+        http.authorizeRequests().antMatchers("/login").permitAll().anyRequest().authenticated();
     }
 
 }

@@ -43,10 +43,12 @@ public class OAuth2ServerConfig  extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //super.configure(clients);
         clients.inMemory()
-                .withClient("clientId")
-                .secret("secret") //client_secret
+                .withClient("clientId1")
+                .secret("secret1") //client_secret
                 .authorizedGrantTypes("authorization_code","password") //授权类型
-                .scopes("app"); //授权范围
+                .scopes("*")
+                // 加上下面代码，当为true时，OAuth Approval页面就默认放开，默认是false
+                .autoApprove("true"); //授权范围
     }
 
     @Override
@@ -74,8 +76,8 @@ public class OAuth2ServerConfig  extends AuthorizationServerConfigurerAdapter {
     @Bean
     protected UserDetailsService userDetailsService(){
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user_1").password("123456").authorities("USER").build());
-        manager.createUser(User.withUsername("user_2").password("123456").authorities("USER").build());
+        manager.createUser(User.withUsername("user_1").password("123456").authorities("ROLE_ADMIN").build());
+        manager.createUser(User.withUsername("user_2").password("123456").authorities("ROLE_ADMIN").build());
         return manager;
     }
 

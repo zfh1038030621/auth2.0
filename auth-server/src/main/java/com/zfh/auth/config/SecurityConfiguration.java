@@ -13,8 +13,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
  * @author zfh
  */
 @Configuration
-@EnableWebSecurity
-@EnableOAuth2Sso
+//@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
@@ -27,10 +26,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //loginPage("登录页面的url")  自定义登录页url,默认为/login
         // login-processing-url 登录请求拦截的url,也就是form表单提交时指定的action
         //defaultSuccessUrl :成功登录过程后，用户将被重定向到页面 - 默认情况下，该页面是Web应用程序的根目录。
-        http.authorizeRequests().antMatchers("/**").access("hasRole('USER')")
+        http.authorizeRequests().antMatchers("/**").authenticated()
         .and().formLogin()
                 // 登陆成功之后执行的处理器
-                .successHandler(authenticationSuccessHandler)
+            //    .successHandler(authenticationSuccessHandler)
 
 
       //  .successHandler(myAuthenticationSuccessHandler())//登录成功之后的handler（自定义handler）
@@ -48,7 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // 只要不清空浏览器Cookie，就可以自动登录。
      //  .and()
      //   .rememberMe().userDetailsService(new JdbcUserDetailService())
-
+                .and().csrf().disable()
         ;
         /* 增加自定义过滤器   */
        //  http.addFilter(new CustomUsernamePasswordAuthenticationFilter());

@@ -1,9 +1,10 @@
-package com.zfh.auth.controller;
+package com.zfh.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 /**
  * @author zhangfanghui
@@ -12,10 +13,11 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 
 
 @RestController
-public class                     TestController {
+public class TestController {
 
     @RequestMapping(value = "/test")
     public void test() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        System.out.println("test方法执行了");
     }
 
