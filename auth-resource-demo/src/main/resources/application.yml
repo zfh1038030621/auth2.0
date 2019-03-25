@@ -9,14 +9,15 @@ server:
 security:
   oauth2:
     client:
-      client-id: clientId1
-      client-secret: secret1
+      client-id: clientId
+      client-secret: secret
       access-token-uri: http://localhost/oauth/token
       user-authorization-uri: http://localhost/oauth/authorize
       #当使用jwt 对称加密的形式的时候加下面的配置
     resource:
       jwt:
-        key-value:  zfh
+        #key-value: zfh
+        key-value:  "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCBc8g0H1PoyOmW42057eA1ynBVv781m0hz++AesxX3zWGZzb3ZC6qSq3X6h8MFkc6V5PnWCgyaMKta1bdU1iMmL2rI8lLulWCoU808/P/XgHbB1Vnu4EQquapl0EWWM2XVs/vgABZXwnp7e2bDDnq+DeZFwntTAsH2l78deDupQIDAQAB\n-----END PUBLIC KEY-----"
       user-info-uri: http://localhost/user/me
 
 
